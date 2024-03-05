@@ -8,4 +8,8 @@ describe("Operaciones CRUD de cafes", () => {
     expect(response.body).toBeInstanceOf(Array);
     expect(response.body.length).toBeGreaterThan(0);
   });
+  test("REQ 2. devuelve status 404 al eliminar ID inexistente", async()=>{
+    const response = await request(server).delete("/cafes/IDnone").set("Authorization","token");
+    expect(response.status).toBe(404);
+  });
 });
