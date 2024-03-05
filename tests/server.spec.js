@@ -12,4 +12,10 @@ describe("Operaciones CRUD de cafes", () => {
     const response = await request(server).delete("/cafes/IDnone").set("Authorization","token");
     expect(response.status).toBe(404);
   });
+  test("REQ 3. devuelve status 201 al agregar un nuevo cafe", async()=>{
+    const response = await request(server).post("/cafes").send({id: 5, nombre: "Latte"});
+    expect(response.status).toBe(201);
+    expect(response.body).toBeInstanceOf(Array);
+    expect(response.body.length).toBeGreaterThan(4);
+  });
 });
